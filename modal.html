@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+
+    <!-- GOOGLE FONT: INTER -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND CDN + SET DEFAULT FONT KE INTER -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+<!-- BUka Modal -->
+<button onclick="document.getElementById('modal').classList.remove('hidden')"
+    class="px-4 py-2 bg-blue-600 text-white rounded-lg mt-10 ml-10">
+    Buka Modal
+</button>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 bg-black/40 flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-lg px-10 py-8 max-h-[90vh] overflow-y-auto">
+
+        <!-- Close button (paling atas, kanan) -->
+        <div class="flex justify-end mb-3">
+            <button onclick="document.getElementById('modal').classList.add('hidden')"
+                class="text-gray-500 hover:text-gray-700 text-lg">
+                ✕
+            </button>
+        </div>
+
+        <!-- Header: Title + Vertical Buttons -->
+        <div class="flex justify-between items-start mb-4">
+            
+            <!-- Title block -->
+<h2 class="text-xl font-bold leading-snug w-[140px]">
+    Pertanian Cerdas Iklim – Tahap 1
+</h2>
+
+
+<!-- Buttons vertical -->
+<div class="flex flex-col gap-2 flex-shrink-0">
+    <button id="copyLinkBtn" class="flex items-center gap-2 px-3 py-1.5 border rounded-lg text-sm hover:bg-gray-100">
+        <img src="img/copy-link.svg" class="w-4 h-4" alt="">
+        <span>Copy link</span>
+    </button>
+
+    <button id="copyTextBtn" class="flex items-center gap-2 px-3 py-1.5 border rounded-lg text-sm hover:bg-gray-100">
+        <img src="img/copy-text.svg" class="w-4 h-4" alt="">
+        <span>Copy text</span>
+    </button>
+</div>
+        </div>
+        <!-- Description -->
+        <div class="space-y-3 text-sm">
+		<hr class="my-8 -mx-10 border-t border-gray-300">
+            <div class="flex justify-between items-start">
+                <span class="text-gray-500">Description</span>
+
+                <!-- Teks rata kanan -->
+                <span class="font-medium text-right block w-1/2">
+                    Tahap 1 berfokus pada pengenalan praktik pertanian yang lebih adaptif terhadap perubahan iklim.
+                </span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">Project</span>
+                <span class="font-medium">Land4Lives</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">Date</span>
+                <span class="font-medium">2 Desember 2025</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">Province</span>
+                <span class="font-medium">Sumatera Selatan</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">District</span>
+                <span class="font-medium">Banyuasin</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">Subdistrict</span>
+                <span class="font-medium">Rambutan</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between">
+                <span class="text-gray-500">Village</span>
+                <span class="font-medium">Pelaju</span>
+            </div>
+
+        <hr class="my-4">
+
+            <div class="flex justify-between items-start">
+                <span class="text-gray-500">Topic</span>
+                <span class="font-medium text-right block w-1/2">
+                    Peningkatan Kapasitas Petani tentang CSA (Climate-Smart Agriculture)
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    // --- Copy TEXT modal ---
+    document.getElementById('copyTextBtn').addEventListener('click', function () {
+        const modal = document.getElementById('modal');
+        const text = modal.innerText.trim();
+
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Teks berhasil disalin!");
+        });
+    });
+</script>
+
+<script>
+    // Jika URL mengandung #modal, langsung buka modal
+    if (window.location.hash === "#modal") {
+        const modal = document.getElementById('modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+    }
+
+    // COPY LINK (gunakan URL saat ini + #modal)
+    document.getElementById('copyLinkBtn').addEventListener('click', function () {
+        const url = window.location.href.split('#')[0] + '#modal';
+        navigator.clipboard.writeText(url).then(() => {
+            alert("Link berhasil disalin!");
+        });
+    });
+</script>
+
+</body>
+</html>
